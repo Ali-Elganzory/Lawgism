@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lawgism">
+    package="com.sdgs.lawgism">
    <application
         android:label="lawgism"
         android:icon="@mipmap/ic_launcher">

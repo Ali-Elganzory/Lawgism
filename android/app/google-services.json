@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "459382944025",
+    "project_id": "lawgism-97c3b",
+    "storage_bucket": "lawgism-97c3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459382944025:android:9b4895f7811d9b460b9588",
+        "android_client_info": {
+          "package_name": "com.sdgs.lawgism"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459382944025-5k3qclepge03uqjkl6ao516uamvvfh10.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv5dwtnfGcDt8uuGdPkozAH7ywVMHPE00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459382944025-5k3qclepge03uqjkl6ao516uamvvfh10.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
