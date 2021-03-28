@@ -21,15 +21,19 @@ class _$QuestionTearOff {
   const _$QuestionTearOff();
 
   _Question call(
-      {String questionerId = "",
+      {String id = "",
+      String questionerId = "",
       String question = "",
       String description = "",
-      String url = ""}) {
+      String url = "",
+      DateTime? createdAt}) {
     return _Question(
+      id: id,
       questionerId: questionerId,
       question: question,
       description: description,
       url: url,
+      createdAt: createdAt,
     );
   }
 
@@ -43,10 +47,12 @@ const $Question = _$QuestionTearOff();
 
 /// @nodoc
 mixin _$Question {
+  String get id => throw _privateConstructorUsedError;
   String get questionerId => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -59,7 +65,12 @@ abstract class $QuestionCopyWith<$Res> {
   factory $QuestionCopyWith(Question value, $Res Function(Question) then) =
       _$QuestionCopyWithImpl<$Res>;
   $Res call(
-      {String questionerId, String question, String description, String url});
+      {String id,
+      String questionerId,
+      String question,
+      String description,
+      String url,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -72,12 +83,18 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? questionerId = freezed,
     Object? question = freezed,
     Object? description = freezed,
     Object? url = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       questionerId: questionerId == freezed
           ? _value.questionerId
           : questionerId // ignore: cast_nullable_to_non_nullable
@@ -94,6 +111,10 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -104,7 +125,12 @@ abstract class _$QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
       __$QuestionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String questionerId, String question, String description, String url});
+      {String id,
+      String questionerId,
+      String question,
+      String description,
+      String url,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -118,12 +144,18 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? questionerId = freezed,
     Object? question = freezed,
     Object? description = freezed,
     Object? url = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_Question(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       questionerId: questionerId == freezed
           ? _value.questionerId
           : questionerId // ignore: cast_nullable_to_non_nullable
@@ -140,6 +172,10 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -149,14 +185,19 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
 /// @nodoc
 class _$_Question implements _Question {
   _$_Question(
-      {this.questionerId = "",
+      {this.id = "",
+      this.questionerId = "",
       this.question = "",
       this.description = "",
-      this.url = ""});
+      this.url = "",
+      this.createdAt});
 
   factory _$_Question.fromJson(Map<String, dynamic> json) =>
       _$_$_QuestionFromJson(json);
 
+  @JsonKey(defaultValue: "")
+  @override
+  final String id;
   @JsonKey(defaultValue: "")
   @override
   final String questionerId;
@@ -169,16 +210,20 @@ class _$_Question implements _Question {
   @JsonKey(defaultValue: "")
   @override
   final String url;
+  @override
+  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'Question(questionerId: $questionerId, question: $question, description: $description, url: $url)';
+    return 'Question(id: $id, questionerId: $questionerId, question: $question, description: $description, url: $url, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Question &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.questionerId, questionerId) ||
                 const DeepCollectionEquality()
                     .equals(other.questionerId, questionerId)) &&
@@ -189,16 +234,21 @@ class _$_Question implements _Question {
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
             (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+                const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(questionerId) ^
       const DeepCollectionEquality().hash(question) ^
       const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(url);
+      const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -213,13 +263,17 @@ class _$_Question implements _Question {
 
 abstract class _Question implements Question {
   factory _Question(
-      {String questionerId,
+      {String id,
+      String questionerId,
       String question,
       String description,
-      String url}) = _$_Question;
+      String url,
+      DateTime? createdAt}) = _$_Question;
 
   factory _Question.fromJson(Map<String, dynamic> json) = _$_Question.fromJson;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   String get questionerId => throw _privateConstructorUsedError;
   @override
@@ -228,6 +282,8 @@ abstract class _Question implements Question {
   String get description => throw _privateConstructorUsedError;
   @override
   String get url => throw _privateConstructorUsedError;
+  @override
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$QuestionCopyWith<_Question> get copyWith =>

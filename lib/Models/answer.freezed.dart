@@ -20,11 +20,18 @@ Answer _$AnswerFromJson(Map<String, dynamic> json) {
 class _$AnswerTearOff {
   const _$AnswerTearOff();
 
-  _Answer call({String answererId = "", String answer = "", int votes = 0}) {
+  _Answer call(
+      {String id = "",
+      String answererId = "",
+      String answer = "",
+      int votes = 0,
+      DateTime? createdAt}) {
     return _Answer(
+      id: id,
       answererId: answererId,
       answer: answer,
       votes: votes,
+      createdAt: createdAt,
     );
   }
 
@@ -38,9 +45,11 @@ const $Answer = _$AnswerTearOff();
 
 /// @nodoc
 mixin _$Answer {
+  String get id => throw _privateConstructorUsedError;
   String get answererId => throw _privateConstructorUsedError;
   String get answer => throw _privateConstructorUsedError;
   int get votes => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +60,12 @@ mixin _$Answer {
 abstract class $AnswerCopyWith<$Res> {
   factory $AnswerCopyWith(Answer value, $Res Function(Answer) then) =
       _$AnswerCopyWithImpl<$Res>;
-  $Res call({String answererId, String answer, int votes});
+  $Res call(
+      {String id,
+      String answererId,
+      String answer,
+      int votes,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -64,11 +78,17 @@ class _$AnswerCopyWithImpl<$Res> implements $AnswerCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? answererId = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       answererId: answererId == freezed
           ? _value.answererId
           : answererId // ignore: cast_nullable_to_non_nullable
@@ -81,6 +101,10 @@ class _$AnswerCopyWithImpl<$Res> implements $AnswerCopyWith<$Res> {
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as int,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -90,7 +114,12 @@ abstract class _$AnswerCopyWith<$Res> implements $AnswerCopyWith<$Res> {
   factory _$AnswerCopyWith(_Answer value, $Res Function(_Answer) then) =
       __$AnswerCopyWithImpl<$Res>;
   @override
-  $Res call({String answererId, String answer, int votes});
+  $Res call(
+      {String id,
+      String answererId,
+      String answer,
+      int votes,
+      DateTime? createdAt});
 }
 
 /// @nodoc
@@ -104,11 +133,17 @@ class __$AnswerCopyWithImpl<$Res> extends _$AnswerCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? answererId = freezed,
     Object? answer = freezed,
     Object? votes = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_Answer(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       answererId: answererId == freezed
           ? _value.answererId
           : answererId // ignore: cast_nullable_to_non_nullable
@@ -121,6 +156,10 @@ class __$AnswerCopyWithImpl<$Res> extends _$AnswerCopyWithImpl<$Res>
           ? _value.votes
           : votes // ignore: cast_nullable_to_non_nullable
               as int,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -129,11 +168,19 @@ class __$AnswerCopyWithImpl<$Res> extends _$AnswerCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Answer implements _Answer {
-  _$_Answer({this.answererId = "", this.answer = "", this.votes = 0});
+  _$_Answer(
+      {this.id = "",
+      this.answererId = "",
+      this.answer = "",
+      this.votes = 0,
+      this.createdAt});
 
   factory _$_Answer.fromJson(Map<String, dynamic> json) =>
       _$_$_AnswerFromJson(json);
 
+  @JsonKey(defaultValue: "")
+  @override
+  final String id;
   @JsonKey(defaultValue: "")
   @override
   final String answererId;
@@ -143,31 +190,40 @@ class _$_Answer implements _Answer {
   @JsonKey(defaultValue: 0)
   @override
   final int votes;
+  @override
+  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'Answer(answererId: $answererId, answer: $answer, votes: $votes)';
+    return 'Answer(id: $id, answererId: $answererId, answer: $answer, votes: $votes, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Answer &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.answererId, answererId) ||
                 const DeepCollectionEquality()
                     .equals(other.answererId, answererId)) &&
             (identical(other.answer, answer) ||
                 const DeepCollectionEquality().equals(other.answer, answer)) &&
             (identical(other.votes, votes) ||
-                const DeepCollectionEquality().equals(other.votes, votes)));
+                const DeepCollectionEquality().equals(other.votes, votes)) &&
+            (identical(other.createdAt, createdAt) ||
+                const DeepCollectionEquality()
+                    .equals(other.createdAt, createdAt)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(answererId) ^
       const DeepCollectionEquality().hash(answer) ^
-      const DeepCollectionEquality().hash(votes);
+      const DeepCollectionEquality().hash(votes) ^
+      const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -181,16 +237,25 @@ class _$_Answer implements _Answer {
 }
 
 abstract class _Answer implements Answer {
-  factory _Answer({String answererId, String answer, int votes}) = _$_Answer;
+  factory _Answer(
+      {String id,
+      String answererId,
+      String answer,
+      int votes,
+      DateTime? createdAt}) = _$_Answer;
 
   factory _Answer.fromJson(Map<String, dynamic> json) = _$_Answer.fromJson;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   String get answererId => throw _privateConstructorUsedError;
   @override
   String get answer => throw _privateConstructorUsedError;
   @override
   int get votes => throw _privateConstructorUsedError;
+  @override
+  DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AnswerCopyWith<_Answer> get copyWith => throw _privateConstructorUsedError;

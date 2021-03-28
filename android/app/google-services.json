@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "459382944025-c96p9kdfp9n12vmcdq1vcjfdfll86lkp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sdgs.lawgism",
+            "certificate_hash": "3ed26bd2fd9e48a5026b5342e4e74c1c074548f1"
+          }
+        },
+        {
           "client_id": "459382944025-5k3qclepge03uqjkl6ao516uamvvfh10.apps.googleusercontent.com",
           "client_type": 3
         }

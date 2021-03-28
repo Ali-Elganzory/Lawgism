@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawgism/Controllers/locale_controller.dart';
 
 import 'package:provider/provider.dart';
 
@@ -42,17 +43,18 @@ class NavigationBar extends StatelessWidget {
                     decoration: BoxDecoration(shape: BoxShape.circle),
                     child: NavigationController.navBarIcons[index],
                   ),
-                  label: NavigationController.navBarLabels[index],
+                  label: LocaleController.bottomNavigationBarLabels[index],
                 ),
               )
               .toList(),
-          key: navProvider.bottomNavBarKey,
+          key: NavigationController.bottomNavBarKey,
           currentIndex: navProvider.selectedPageIndex,
           elevation: 24.0,
           type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           showSelectedLabels: true,
-          // selectedLabelStyle: TextStyle(fontFamily: Constants.fontFamily),
+          selectedLabelStyle:
+              TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
           // unselectedLabelStyle: TextStyle(fontFamily: Constants.fontFamily),
           onTap: (n) {
             navProvider.animateToPage(n);

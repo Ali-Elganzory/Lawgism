@@ -13,7 +13,10 @@ _$_LawArticle _$_$_LawArticleFromJson(Map<String, dynamic> json) {
     coverUrl: json['coverUrl'] as String? ?? '',
     title: json['title'] as String? ?? '',
     brief: json['brief'] as String? ?? '',
-    content: json['content'] as List<LawArticleItem>? ?? [],
+    content: (json['content'] as List<dynamic>?)
+            ?.map((e) => LawArticleItem.fromJson(e as Map<String, dynamic>))
+            .toList() ??
+        [],
   );
 }
 
@@ -24,5 +27,5 @@ Map<String, dynamic> _$_$_LawArticleToJson(_$_LawArticle instance) =>
       'coverUrl': instance.coverUrl,
       'title': instance.title,
       'brief': instance.brief,
-      'content': instance.content.map((e) => e.toJson()).toList(),
+      'content': instance.content,
     };

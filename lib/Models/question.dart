@@ -6,10 +6,12 @@ part "question.g.dart";
 @freezed
 class Question with _$Question {
   factory Question({
+    @Default("") String id,
     @Default("") String questionerId,
     @Default("") String question,
     @Default("") String description,
     @Default("") String url,
+    DateTime? createdAt,
   }) = _Question;
 
   factory Question.fromJson(Map<String, dynamic> json) =>

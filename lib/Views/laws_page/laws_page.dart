@@ -1,14 +1,39 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
+import 'package:lawgism/Controllers/locale_controller.dart';
+import 'package:lawgism/Controllers/laws_controller.dart';
+import 'package:lawgism/Models/law_category.dart';
+import 'package:lawgism/Views/laws_page/law_category_tile.dart';
+
 class LawsPage extends StatelessWidget {
+  static const routeName = "/Laws";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Laws"),
+        title: Text("Laws".tr),
       ),
-      body: Center(
-        child: Text("Msaaaaa"),
+      body: Selector<LawsController, List<LawCategory>>(
+        selector: (_, con) => con.lawCategories,
+        builder: (_, lawCategories, __) => lawCategories.isEmpty
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : GridView.builder(
+                padding: const EdgeInsets.all(12),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                ),
+                itemCount: lawCategories.length,
+                itemBuilder: (_, idx) {
+                  return LawCategoryTile(lawCategory: lawCategories[idx]);
+                },
+              ),
       ),
     );
   }
