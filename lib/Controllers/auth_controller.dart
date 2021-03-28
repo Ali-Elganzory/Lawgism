@@ -23,6 +23,7 @@ class AuthController with ChangeNotifier {
   User _user = User();
   bool _walkthrough = true;
   User get user => _user;
+  String get uid => _auth.currentUser?.uid ?? "";
   bool get walkthrough => _walkthrough;
   set walkthrough(bool v) {
     _walkthrough = v;
@@ -55,22 +56,6 @@ class AuthController with ChangeNotifier {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-
-  Future<void> init() async {
-    // _prefs = await SharedPreferences.getInstance();
-    // if (!_prefs.containsKey('walkthrough'))
-    //   walkthrough = true;
-    // else
-    //   _walkthrough = _prefs.getBool('walkthrough');
-
-    _authStateChanges.listen((user) {
-      if (user != null) {
-        fetchProfile();
-      } else {
-        _user = User();
-      }
-    });
-  }
 
   void updateProfile({
     String? name,
@@ -155,7 +140,10 @@ class AuthController with ChangeNotifier {
 
     await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
-    _user = User(email: email);
+    _user = User(
+      email: email,
+      id: _auth.currentUser!.uid,
+    );
     await updateOnlineProfile();
 
     isSigningIn = false;
@@ -200,6 +188,7 @@ class AuthController with ChangeNotifier {
 
         if (!silently) {
           _user = User(
+            id: _auth.currentUser!.uid,
             name: googleSignInAccount.displayName ?? "",
             email: googleSignInAccount.email,
             photoUrl: googleSignInAccount.photoUrl ?? "",

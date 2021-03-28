@@ -13,6 +13,7 @@ _$_Question _$_$_QuestionFromJson(Map<String, dynamic> json) {
     question: json['question'] as String? ?? '',
     description: json['description'] as String? ?? '',
     url: json['url'] as String? ?? '',
+    answerCount: json['answerCount'] as num? ?? 0,
     createdAt: json['createdAt'] == null
         ? null
         : DateTime.parse(json['createdAt'] as String),
@@ -26,5 +27,6 @@ Map<String, dynamic> _$_$_QuestionToJson(_$_Question instance) =>
       'question': instance.question,
       'description': instance.description,
       'url': instance.url,
+      'answerCount': instance.answerCount,
       'createdAt': instance.createdAt?.toIso8601String(),
     };

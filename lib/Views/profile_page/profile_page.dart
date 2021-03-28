@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 import 'package:lawgism/Controllers/locale_controller.dart';
 import 'package:lawgism/Controllers/auth_controller.dart';
@@ -23,8 +24,8 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
-    //final double sh = deviceSize.height;
     final double sw = deviceSize.width;
+    final double sidePadding = 0.04 * sw;
 
     final double textFieldHeight = 42;
 
@@ -47,9 +48,22 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Profile".tr),
         actions: [
-          CupertinoSwitch(
-            value: true,
-            onChanged: (v) {},
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: sidePadding),
+            child: FlutterSwitch(
+              value: LocaleController.isArabic,
+              onToggle: (bool v) {
+                Provider.of<LocaleController>(context, listen: false)
+                    .switchLocale();
+              },
+              activeText: "ar",
+              inactiveText: "en",
+              showOnOff: true,
+              activeColor: Theme.of(context).accentColor,
+              inactiveColor: Theme.of(context).accentColor,
+              padding: 4,
+              valueFontSize: 16,
+            ),
           ),
         ],
       ),
@@ -61,9 +75,9 @@ class ProfilePage extends StatelessWidget {
               height: 600,
               width: sw,
               margin: EdgeInsets.only(
-                left: 0.05 * sw,
-                right: 0.05 * sw,
-                top: 0.07 * sw,
+                left: sidePadding,
+                right: sidePadding,
+                top: sidePadding,
                 bottom: 0.020 * sw,
               ),
               child: ElevatedContainer(
@@ -432,34 +446,38 @@ class ProfilePage extends StatelessWidget {
             SizedBox(
               height: 16,
             ),
-            ElevatedContainer(
-              height: 60,
-              width: 0.9 * sw,
-              radius: 4.0,
-              child: InkWell(
-                onTap: () {
-                  Provider.of<AuthController>(context, listen: false).signOut();
-                },
-                child: Container(
-                  color: Colors.white,
-                  child: Row(
-                    children: <Widget>[
-                      const SizedBox(width: 20.0),
-                      Expanded(
-                        child: Text(
-                          "Sign Out".tr,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).primaryColor),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: sidePadding),
+              child: ElevatedContainer(
+                height: 60,
+                width: double.maxFinite,
+                radius: 4.0,
+                child: InkWell(
+                  onTap: () {
+                    Provider.of<AuthController>(context, listen: false)
+                        .signOut();
+                  },
+                  child: Container(
+                    color: Colors.white,
+                    child: Row(
+                      children: <Widget>[
+                        const SizedBox(width: 20.0),
+                        Expanded(
+                          child: Text(
+                            "Sign Out".tr,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).primaryColor),
+                          ),
                         ),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 14.0,
-                      ),
-                      const SizedBox(width: 15.0),
-                    ],
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 14.0,
+                        ),
+                        const SizedBox(width: 15.0),
+                      ],
+                    ),
                   ),
                 ),
               ),

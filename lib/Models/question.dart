@@ -11,6 +11,7 @@ class Question with _$Question {
     @Default("") String question,
     @Default("") String description,
     @Default("") String url,
+    @Default(0) num answerCount,
     DateTime? createdAt,
   }) = _Question;
 

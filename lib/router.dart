@@ -4,6 +4,7 @@ import 'package:lawgism/Models/law_category.dart';
 
 import 'package:lawgism/Views/auth_page/auth_page.dart';
 import 'package:lawgism/Views/discussion_page/discussion_page.dart';
+import 'package:lawgism/Views/discussion_page/new_question_page.dart';
 import 'package:lawgism/Views/home_page.dart';
 import 'package:lawgism/Views/laws_page/article_page.dart';
 import 'package:lawgism/Views/laws_page/articles_page.dart';
@@ -32,6 +33,10 @@ class Router {
       case DiscussionPage.routeName:
         return SlideRoute(
             page: DiscussionPage(), direction: SlideDirection.right);
+
+      case NewQuestionPage.routeName:
+        return SlideRoute(
+            page: NewQuestionPage(), direction: SlideDirection.right);
 
       case ProfilePage.routeName:
         return SlideRoute(page: ProfilePage(), direction: SlideDirection.right);

@@ -63,6 +63,8 @@ class MaterialAppEntry extends StatelessWidget {
     _authController.authStateChanges.listen((user) {
       if (user != null) {
         Provider.of<LawsController>(context, listen: false).init();
+        Provider.of<AuthController>(context, listen: false).fetchProfile();
+        Provider.of<DiscussionController>(context, listen: false).init();
       }
     });
 
@@ -104,6 +106,8 @@ class MaterialAppEntry extends StatelessWidget {
           stream: _authController.authStateChanges,
           builder: (_, snapshot) {
             print("AuthStream:  ${snapshot}");
+            if (snapshot.connectionState == ConnectionState.waiting)
+              return AuthPage();
             if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
               return HomePage();
             } else {

@@ -21,12 +21,14 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {String name = "",
+      {String id = "",
+      String name = "",
       String email = "",
       String phone = "",
       String photoUrl = "",
       String address = ""}) {
     return _User(
+      id: id,
       name: name,
       email: email,
       phone: phone,
@@ -45,6 +47,7 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -61,7 +64,8 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String email,
       String phone,
       String photoUrl,
@@ -78,6 +82,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? phone = freezed,
@@ -85,6 +90,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? address = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -115,7 +124,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name,
+      {String id,
+      String name,
       String email,
       String phone,
       String photoUrl,
@@ -133,6 +143,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
     Object? phone = freezed,
@@ -140,6 +151,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? address = freezed,
   }) {
     return _then(_User(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -169,7 +184,8 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 /// @nodoc
 class _$_User implements _User {
   _$_User(
-      {this.name = "",
+      {this.id = "",
+      this.name = "",
       this.email = "",
       this.phone = "",
       this.photoUrl = "",
@@ -178,6 +194,9 @@ class _$_User implements _User {
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
 
+  @JsonKey(defaultValue: "")
+  @override
+  final String id;
   @JsonKey(defaultValue: "")
   @override
   final String name;
@@ -196,13 +215,15 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(name: $name, email: $email, phone: $phone, photoUrl: $photoUrl, address: $address)';
+    return 'User(id: $id, name: $name, email: $email, phone: $phone, photoUrl: $photoUrl, address: $address)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _User &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.email, email) ||
@@ -219,6 +240,7 @@ class _$_User implements _User {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(phone) ^
@@ -238,7 +260,8 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {String name,
+      {String id,
+      String name,
       String email,
       String phone,
       String photoUrl,
@@ -246,6 +269,8 @@ abstract class _User implements User {
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
   @override

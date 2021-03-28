@@ -11,6 +11,11 @@ class LocaleController with ChangeNotifier {
   static const Locale en = Locale("en", "UK");
   static const Locale ar = Locale("ar", "AE");
   static Locale _currentLocale = ar;
+  // For language switch between Arabic & English
+  static bool get isArabic => _currentLocale == ar;
+  void switchLocale() {
+    currentLocale = currentLocale == ar ? en : ar;
+  }
 
   static const List<Locale> supportedLocales = [en, ar];
 
@@ -34,6 +39,8 @@ class LocaleController with ChangeNotifier {
 
   static const Map<String, Map<String, String>> _textValues = {
     'en': {
+      'Know your Rights and Responsibilities':
+          'Know your Rights and Responsibilities',
       // Auth
       'Email': 'Email',
       'Password': 'Password',
@@ -56,8 +63,21 @@ class LocaleController with ChangeNotifier {
       'Messages': 'Messages',
       'Profile': 'Profile',
       'Msaaaaa': 'Msaaaaa',
+      // Discussion Page
+      'New Question': 'New Question',
+      'Question': 'Question',
+      'Write your question': 'Write your question',
+      'Supporting Link (Optional)': 'Supporting Link (Optional)',
+      'Description (Optional)': 'Description (Optional)',
+      'URL Link': 'URL Link',
+      'Any additional details for explaining your question within context':
+          'Any additional details for explaining your question within context',
+      'Submit': 'Submit',
+      'Asked on ': 'Asked on ',
+      'Answers': 'Answers',
     },
     'ar': {
+      'Know your Rights and Responsibilities': 'اعرف وناقش حقوقك وواجباتك',
       // Auth
       'Email': 'البريد الالكتروني',
       'Password': 'كلمة السر',
@@ -76,10 +96,22 @@ class LocaleController with ChangeNotifier {
       'Choose Photo': 'اختر صورة',
       // BottomNavigationBarLabels
       'Laws': 'قوانين',
-      'Discussion': 'نقاش',
+      'Discussion': 'نِقاش',
       'Messages': 'رسائل',
       'Profile': 'ملف شخصي',
       'Msaaaaa': 'مساااا',
+      // Discussion Page
+      'New Question': 'سؤال جديد',
+      'Question': 'السؤال',
+      'Write your question': 'اكتب سؤالك',
+      'Supporting Link (Optional)': 'رابط اضافي (اختياري)',
+      'Description (Optional)': 'وصف اضافي (اختياري)',
+      'URL Link': 'رابط انترنت',
+      'Any additional details for explaining your question within context':
+          'أي تفاصيل تساعد على وصف سؤالك او توفير سياق',
+      'Submit': 'ابعت',
+      'Asked on ': 'سُؤِلَ في ',
+      'Answers': 'أجوبة',
     }
   };
 }

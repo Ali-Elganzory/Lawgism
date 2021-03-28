@@ -26,6 +26,7 @@ class _$QuestionTearOff {
       String question = "",
       String description = "",
       String url = "",
+      num answerCount = 0,
       DateTime? createdAt}) {
     return _Question(
       id: id,
@@ -33,6 +34,7 @@ class _$QuestionTearOff {
       question: question,
       description: description,
       url: url,
+      answerCount: answerCount,
       createdAt: createdAt,
     );
   }
@@ -52,6 +54,7 @@ mixin _$Question {
   String get question => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
+  num get answerCount => throw _privateConstructorUsedError;
   DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -70,6 +73,7 @@ abstract class $QuestionCopyWith<$Res> {
       String question,
       String description,
       String url,
+      num answerCount,
       DateTime? createdAt});
 }
 
@@ -88,6 +92,7 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
     Object? question = freezed,
     Object? description = freezed,
     Object? url = freezed,
+    Object? answerCount = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -111,6 +116,10 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      answerCount: answerCount == freezed
+          ? _value.answerCount
+          : answerCount // ignore: cast_nullable_to_non_nullable
+              as num,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -130,6 +139,7 @@ abstract class _$QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
       String question,
       String description,
       String url,
+      num answerCount,
       DateTime? createdAt});
 }
 
@@ -149,6 +159,7 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
     Object? question = freezed,
     Object? description = freezed,
     Object? url = freezed,
+    Object? answerCount = freezed,
     Object? createdAt = freezed,
   }) {
     return _then(_Question(
@@ -172,6 +183,10 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
+      answerCount: answerCount == freezed
+          ? _value.answerCount
+          : answerCount // ignore: cast_nullable_to_non_nullable
+              as num,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -190,6 +205,7 @@ class _$_Question implements _Question {
       this.question = "",
       this.description = "",
       this.url = "",
+      this.answerCount = 0,
       this.createdAt});
 
   factory _$_Question.fromJson(Map<String, dynamic> json) =>
@@ -210,12 +226,15 @@ class _$_Question implements _Question {
   @JsonKey(defaultValue: "")
   @override
   final String url;
+  @JsonKey(defaultValue: 0)
+  @override
+  final num answerCount;
   @override
   final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'Question(id: $id, questionerId: $questionerId, question: $question, description: $description, url: $url, createdAt: $createdAt)';
+    return 'Question(id: $id, questionerId: $questionerId, question: $question, description: $description, url: $url, answerCount: $answerCount, createdAt: $createdAt)';
   }
 
   @override
@@ -235,6 +254,9 @@ class _$_Question implements _Question {
                     .equals(other.description, description)) &&
             (identical(other.url, url) ||
                 const DeepCollectionEquality().equals(other.url, url)) &&
+            (identical(other.answerCount, answerCount) ||
+                const DeepCollectionEquality()
+                    .equals(other.answerCount, answerCount)) &&
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)));
@@ -248,6 +270,7 @@ class _$_Question implements _Question {
       const DeepCollectionEquality().hash(question) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(url) ^
+      const DeepCollectionEquality().hash(answerCount) ^
       const DeepCollectionEquality().hash(createdAt);
 
   @JsonKey(ignore: true)
@@ -268,6 +291,7 @@ abstract class _Question implements Question {
       String question,
       String description,
       String url,
+      num answerCount,
       DateTime? createdAt}) = _$_Question;
 
   factory _Question.fromJson(Map<String, dynamic> json) = _$_Question.fromJson;
@@ -282,6 +306,8 @@ abstract class _Question implements Question {
   String get description => throw _privateConstructorUsedError;
   @override
   String get url => throw _privateConstructorUsedError;
+  @override
+  num get answerCount => throw _privateConstructorUsedError;
   @override
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @override
