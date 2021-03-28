@@ -27,13 +27,13 @@ class LocaleController with ChangeNotifier {
 
   // BottomNavigationBarLabels
   static List<String> get bottomNavigationBarLabels =>
-      [lawsLabel, discussionLabel, messagesLabel, profileLabel];
+      [lawsLabel, discussionLabel, /* messagesLabel, */ profileLabel];
   static String get lawsLabel =>
       (_textValues[_currentLocale.languageCode]!)['Laws'] ?? '';
   static String get discussionLabel =>
       (_textValues[_currentLocale.languageCode]!)['Discussion'] ?? '';
-  static String get messagesLabel =>
-      (_textValues[_currentLocale.languageCode]!)['Messages'] ?? '';
+  // static String get messagesLabel =>
+  //     (_textValues[_currentLocale.languageCode]!)['Messages'] ?? '';
   static String get profileLabel =>
       (_textValues[_currentLocale.languageCode]!)['Profile'] ?? '';
 
@@ -75,6 +75,11 @@ class LocaleController with ChangeNotifier {
       'Submit': 'Submit',
       'Asked on ': 'Asked on ',
       'Answers': 'Answers',
+      'Answer': 'Answer',
+      'New Answer': 'New Answer',
+      'Write your answer...': 'Write your answer...',
+      'Answered on': 'Answered on',
+      'Unnamed': 'Unnamed',
     },
     'ar': {
       'Know your Rights and Responsibilities': 'اعرف وناقش حقوقك وواجباتك',
@@ -112,6 +117,11 @@ class LocaleController with ChangeNotifier {
       'Submit': 'ابعت',
       'Asked on ': 'سُؤِلَ في ',
       'Answers': 'أجوبة',
+      'Answer': 'إجابة',
+      'New Answer': 'إجابة جديدة',
+      'Write your answer...': 'اكتب إجابتك هنا...',
+      'Answered on': 'جاوب في',
+      'Unnamed': 'بدون اسم',
     }
   };
 }

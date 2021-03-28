@@ -22,7 +22,7 @@ class NavigationController with ChangeNotifier {
   final List<Widget> _pages = [
     LawsPage(),
     DiscussionPage(),
-    LawsPage(),
+    // LawsPage(),
     ProfilePage(),
   ];
 
@@ -61,7 +61,7 @@ class NavigationController with ChangeNotifier {
   static const List<Icon> _navBarIcons = [
     Icon(FontAwesomeIcons.balanceScale),
     Icon(Icons.chat_outlined),
-    Icon(FontAwesomeIcons.envelope),
+    // Icon(FontAwesomeIcons.envelope),
     Icon(Icons.person_outline),
   ];
 

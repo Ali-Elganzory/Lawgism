@@ -1,5 +1,5 @@
-String? validateEmail(String email) {
-  if (email.isEmpty) return "* required";
+String? validateEmail(String? email) {
+  if (email == null || email.isEmpty) return "* required";
   if (!email.contains('@')) return "Please, enter a valid email.";
   if (email.lastIndexOf('@') > email.lastIndexOf('.'))
     return "Please, enter a valid email.";

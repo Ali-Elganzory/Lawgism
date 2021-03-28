@@ -35,7 +35,11 @@ class NavigationBar extends StatelessWidget {
     return Consumer<NavigationController>(
       builder: (ctx, navProvider, ch) {
         return BottomNavigationBar(
-          items: [0, 1, 2, 3]
+          items: [
+            0,
+            1,
+            2, /*3*/
+          ]
               .map(
                 (index) => BottomNavigationBarItem(
                   backgroundColor: Colors.white,

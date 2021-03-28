@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lawgism/Models/law_article.dart';
 import 'package:lawgism/Models/law_category.dart';
+import 'package:lawgism/Models/question.dart';
 
 import 'package:lawgism/Views/auth_page/auth_page.dart';
 import 'package:lawgism/Views/discussion_page/discussion_page.dart';
+import 'package:lawgism/Views/discussion_page/new_answer_page.dart';
 import 'package:lawgism/Views/discussion_page/new_question_page.dart';
+import 'package:lawgism/Views/discussion_page/question_page.dart';
 import 'package:lawgism/Views/home_page.dart';
 import 'package:lawgism/Views/laws_page/article_page.dart';
 import 'package:lawgism/Views/laws_page/articles_page.dart';
@@ -37,6 +40,16 @@ class Router {
       case NewQuestionPage.routeName:
         return SlideRoute(
             page: NewQuestionPage(), direction: SlideDirection.right);
+
+      case QuestionPage.routeName:
+        return SlideRoute(
+            page: QuestionPage(question: settings.arguments as Question),
+            direction: SlideDirection.right);
+
+      case NewAnswerPage.routeName:
+        return SlideRoute(
+            page: NewAnswerPage(question: settings.arguments as Question),
+            direction: SlideDirection.right);
 
       case ProfilePage.routeName:
         return SlideRoute(page: ProfilePage(), direction: SlideDirection.right);

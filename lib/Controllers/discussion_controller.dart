@@ -27,6 +27,7 @@ class DiscussionController with ChangeNotifier {
   final TextEditingController questionController = TextEditingController();
   final TextEditingController linkController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController answerController = TextEditingController();
 
   Future<void> init() async {
     await fetchQuestions();
@@ -75,6 +76,31 @@ class DiscussionController with ChangeNotifier {
 
   Future<void> addAnswer({
     required Question q,
+    required String id,
+  }) async {
+    isSubmittingQ = true;
+
+    Answer a = Answer(
+      answererId: id,
+      answer: answerController.text,
+      createdAt: DateTime.now(),
+      votes: 0,
+    );
+    await _addAnswer(q: q, a: a);
+    final int idx = _questions.indexWhere((e) => e.id == q.id);
+    if (idx != -1)
+      _questions[idx] = _questions[idx]
+          .copyWith(answerCount: (_questions[idx].answerCount + 1));
+
+    NavigationController.goBack();
+
+    answerController.text = "";
+
+    isSubmittingQ = false;
+  }
+
+  Future<void> _addAnswer({
+    required Question q,
     required Answer a,
   }) async {
     await _firestore
@@ -89,9 +115,9 @@ class DiscussionController with ChangeNotifier {
         .set({"answerCount": FieldValue.increment(1)}, SetOptions(merge: true));
   }
 
-  Future<Stream<List<Answer>>> getAnswers(
+  Stream<List<Answer>> getAnswers(
     Question q,
-  ) async {
+  ) {
     return _firestore
         .collection("Questions")
         .doc(q.id)

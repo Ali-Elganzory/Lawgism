@@ -56,6 +56,18 @@ class AuthController with ChangeNotifier {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  final List<User> _cachedUsers = [];
+
+  Future<User> getUser(String uid) async {
+    if (uid == _auth.currentUser!.uid) return user;
+    final int idx = _cachedUsers.indexWhere((e) => e.id == uid);
+    if (idx != -1) return _cachedUsers[idx];
+    final User fetchedUser = await fetchUserProfile(uid);
+    _cachedUsers.add(fetchedUser);
+    return fetchedUser;
+  }
 
   void updateProfile({
     String? name,
@@ -68,17 +80,22 @@ class AuthController with ChangeNotifier {
     _user = _user.copyWith(
       name: name ?? _user.name,
       email: email ?? _user.email,
-      phone: email ?? _user.phone,
+      phone: phone ?? _user.phone,
       address: address ?? _user.address,
       photoUrl: photoUrl ?? _user.photoUrl,
     );
 
     nameController.text = name ?? nameController.text;
     emailController.text = email ?? emailController.text;
-    phoneController.text = email ?? phoneController.text;
+    phoneController.text = phone ?? phoneController.text;
     addressController.text = address ?? addressController.text;
 
     notifyListeners();
+  }
+
+  Future<User> fetchUserProfile(String uid) async {
+    return User.fromJson(
+        (await _firestore.collection('Users').doc(uid).get()).data() ?? {});
   }
 
   Future<void> fetchProfile() async {
@@ -98,6 +115,7 @@ class AuthController with ChangeNotifier {
 
     nameController.text = _user.name;
     emailController.text = _user.email;
+    phoneController.text = _user.phone;
     addressController.text = _user.address;
 
     isLoading = false;
@@ -109,7 +127,7 @@ class AuthController with ChangeNotifier {
     await _firestore
         .collection('Users')
         .doc(_auth.currentUser!.uid)
-        .set(_user.toJson());
+        .set(_user.toJson(), SetOptions(merge: true));
 
     isLoading = false;
   }
@@ -149,13 +167,38 @@ class AuthController with ChangeNotifier {
     isSigningIn = false;
   }
 
-  Future<void> signInWithEmailAndPassword({
+  Future<void> signInWithEmailAndPassword() async {
+    await _signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+
+    emailController.text = "";
+    passwordController.text = "";
+  }
+
+  Future<void> _signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     isSigningIn = true;
 
-    await _auth.signInWithEmailAndPassword(email: email, password: password);
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on auth.FirebaseAuthException catch (e) {
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {} finally {}
+    _user = User(
+      id: _auth.currentUser!.uid,
+    );
+    updateProfile(email: emailController.text);
+    await updateOnlineProfile();
 
     isSigningIn = false;
   }

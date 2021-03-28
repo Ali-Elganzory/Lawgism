@@ -158,9 +158,15 @@ class ProfilePage extends StatelessWidget {
                                                     iconSize: 30.0,
                                                   ),
                                                 )
-                                              : CachedNetworkImage(
-                                                  imageUrl: photo,
-                                                  fit: BoxFit.cover,
+                                              : Positioned(
+                                                  top: 0,
+                                                  bottom: 0,
+                                                  left: 0,
+                                                  right: 0,
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: photo,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                           Positioned(
                                             bottom: 0,
@@ -168,7 +174,7 @@ class ProfilePage extends StatelessWidget {
                                               child: Container(
                                                 width: 92,
                                                 color: Theme.of(context)
-                                                    .accentColor,
+                                                    .accentColor.withOpacity(0.5),
                                                 padding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 3),
