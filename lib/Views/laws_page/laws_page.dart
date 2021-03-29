@@ -16,23 +16,26 @@ class LawsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Laws".tr),
       ),
-      body: Selector<LawsController, List<LawCategory>>(
-        selector: (_, con) => con.lawCategories,
-        builder: (_, lawCategories, __) => lawCategories.isEmpty
+      body: Selector<LawsController, bool>(
+        selector: (_, con) => con.isLoadingLaws,
+        builder: (_, isLoadingLaws, __) => isLoadingLaws
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : GridView.builder(
-                padding: const EdgeInsets.all(12),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
+            : Selector<LawsController, List<LawCategory>>(
+                selector: (_, con) => con.lawCategories,
+                builder: (_, lawCategories, __) => GridView.builder(
+                  padding: const EdgeInsets.all(12),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                  ),
+                  itemCount: lawCategories.length,
+                  itemBuilder: (_, idx) {
+                    return LawCategoryTile(lawCategory: lawCategories[idx]);
+                  },
                 ),
-                itemCount: lawCategories.length,
-                itemBuilder: (_, idx) {
-                  return LawCategoryTile(lawCategory: lawCategories[idx]);
-                },
               ),
       ),
     );

@@ -60,13 +60,15 @@ class MaterialAppEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     final AuthController _authController =
         Provider.of<AuthController>(context, listen: false);
-    _authController.authStateChanges.listen((user) {
-      if (user != null) {
-        Provider.of<LawsController>(context, listen: false).init();
-        Provider.of<AuthController>(context, listen: false).fetchProfile();
-        Provider.of<DiscussionController>(context, listen: false).init();
-      }
-    });
+
+    Future<void> init() async {
+      // if (_authController.uid.isNotEmpty) {
+        await Provider.of<AuthController>(context, listen: false)
+            .fetchProfile();
+        await Provider.of<LawsController>(context, listen: false).init();
+        await Provider.of<DiscussionController>(context, listen: false).init();
+      // }
+    }
 
     return Selector<LocaleController, Locale>(
       selector: (_, localeProvider) => localeProvider.currentLocale,
@@ -108,7 +110,8 @@ class MaterialAppEntry extends StatelessWidget {
             print("AuthStream:  ${snapshot}");
             if (snapshot.connectionState == ConnectionState.waiting)
               return AuthPage();
-            if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
+            else if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
+              init();
               return HomePage();
             } else {
               return AuthPage();

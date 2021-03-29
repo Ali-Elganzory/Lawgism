@@ -16,9 +16,7 @@ class AuthController with ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   SharedPreferences? _prefs;
 
-  Stream<auth.User?> _authStateChanges =
-      auth.FirebaseAuth.instance.authStateChanges();
-  Stream<auth.User?> get authStateChanges => _authStateChanges;
+  Stream<auth.User?> get authStateChanges => _auth.authStateChanges();
 
   User _user = User();
   bool _walkthrough = true;
@@ -173,7 +171,6 @@ class AuthController with ChangeNotifier {
       password: passwordController.text,
     );
 
-    emailController.text = "";
     passwordController.text = "";
   }
 
